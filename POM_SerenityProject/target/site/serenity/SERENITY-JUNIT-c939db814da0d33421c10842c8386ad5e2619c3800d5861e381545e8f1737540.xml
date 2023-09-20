@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><testsuite errors="0" failures="0" name="com.tests.CartVerificationTest" skipped="0" tests="1" time="22.92" timestamp="2023-09-20 11:39:38"><testcase classname="com.tests.CartVerificationTest" name="When adding products to cart from home page then products should appear in cart"/></testsuite>

@@ -1,0 +1,2 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Login test","When login with valid credentials then dashboard username messaged should be display","SUCCESS","2023-09-19T15:30:22.6801996+03:00[Europe/Bucharest]","0.0","16.17"

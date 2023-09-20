@@ -1,0 +1,17 @@
+Feature: Login Page
+ 
+@ValidCredentials
+   Scenario: Login with valid credentials
+    
+    Given User is on Home page
+    When User enters username
+    And User enters password
+    Then User should be able to login successfully
+     
+@InValidCredentials   
+   Scenario Outline: Login with invalid credentials
+    
+    Given User is on Home page
+    When User enters username
+    And User enters password
+    Then User should be able to see error message

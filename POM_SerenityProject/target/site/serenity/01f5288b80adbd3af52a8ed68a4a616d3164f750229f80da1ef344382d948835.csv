@@ -1,0 +1,5 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Cart verification test","When adding products to cart from home page then products should appear in cart","SUCCESS","2023-09-19T15:28:57.991025+03:00[Europe/Bucharest]","0.0","13.07"
+"Checkout verification test","When adding products to cart then products should appear on checkout page","SUCCESS","2023-09-19T15:29:17.7768176+03:00[Europe/Bucharest]","0.0","21.84"
+"Invalid login test","When login with invalid credentials then login error message should appear","SUCCESS","2023-09-19T15:30:22.4583683+03:00[Europe/Bucharest]","0.0","36.95"
+"Login test","When login with valid credentials then dashboard username messaged should be display","SUCCESS","2023-09-19T15:30:22.6801996+03:00[Europe/Bucharest]","0.0","16.17"

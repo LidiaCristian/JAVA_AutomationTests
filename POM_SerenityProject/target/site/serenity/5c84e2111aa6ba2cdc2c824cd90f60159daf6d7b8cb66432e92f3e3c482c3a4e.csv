@@ -1,0 +1,2 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Cart verification test","When adding products to cart from home page then products should appear in cart","SUCCESS","2023-09-19T15:28:57.991025+03:00[Europe/Bucharest]","0.0","13.07"

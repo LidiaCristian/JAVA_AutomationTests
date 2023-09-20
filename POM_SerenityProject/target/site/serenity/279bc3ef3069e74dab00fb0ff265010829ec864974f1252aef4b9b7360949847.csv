@@ -1,0 +1,2 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Invalid login test","When login with invalid credentials then login error message should appear","SUCCESS","2023-09-19T15:30:22.4583683+03:00[Europe/Bucharest]","0.0","36.95"
