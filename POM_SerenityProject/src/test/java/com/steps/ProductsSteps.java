@@ -39,6 +39,7 @@ public class ProductsSteps {
                     break;
                 }
             }
+            
             if (!productExists) {
                 // If the product doesn't exist in the cart, add it
                 Cart newProduct = CartFactory.getCartProducts(productDescription, productPrice);
