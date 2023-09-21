@@ -13,38 +13,46 @@ import java.util.List;
 
 public class ProductsSteps {
     private ProductsPage productsPage;
-    private int totalProductsAddedToCart;
 
     @Step()
     public void addRandomProductsToCart() {
         int randomNumber = MethodsHelper.getRandomNumber(1, 10);
-        List<Cart> productList = new ArrayList<>();
-        CartFactory productsList2;
 
-        for (int i = 0; i <= randomNumber - 1; i++) {
-            boolean elementExists = false;
-            int randomProductIndex = MethodsHelper.getRandomNumber(1, 5); //Max: 34
-            productsPage.clickAddToCartButton(randomProductIndex);
-            productsPage.clickContinueShoppingButton();
-            if (productList.isEmpty()){
-                productList.add(CartFactory.getCartProducts(productsPage.getProductDescription(randomProductIndex),
-                        productsPage.getProductPrice(randomProductIndex)));
-                elementExists = true;
-            }
-            else
-                for (Cart productToModify : productList) {
-                    if (productToModify.getDescription().equals(productsPage.getProductDescription(randomProductIndex))) {
-                        productToModify.setQuantity(productToModify.getQuantity() + 1);
-                        productToModify.setTotalPricePerProduct(productToModify.getPrice() * productToModify.getQuantity());
-                        elementExists = true;
-                        break;
-                    }
-                }
-            if (elementExists == false)
-                productList.add(CartFactory.getCartProducts(productsPage.getProductDescription(randomProductIndex),
-                        productsPage.getProductPrice(randomProductIndex)));
+        List<Cart> cartList = SerenitySessionUtils.getFromSession(SerenityKeyConstants.Cart);
+
+        if (cartList == null) {
+            cartList = new ArrayList<>();
         }
 
-        SerenitySessionUtils.putOnSession(SerenityKeyConstants.Cart, productList);
+        for (int i = 0; i < randomNumber; i++) {
+            int randomProductIndex = MethodsHelper.getRandomNumber(1, 5); // Max: 34
+            String productDescription = productsPage.getProductDescription(randomProductIndex);
+            int productPrice = productsPage.getProductPrice(randomProductIndex);
+
+            // Check if the product is already in the cart
+            boolean productExists = false;
+            for (Cart existingProduct : cartList) {
+                if (existingProduct.getDescription().equals(productDescription)) {
+                    existingProduct.setQuantity(existingProduct.getQuantity() + 1);
+                    existingProduct.setTotalPricePerProduct(existingProduct.getTotalPricePerProduct() + productPrice);
+                    productExists = true;
+                    break;
+                }
+            }
+            if (!productExists) {
+                // If the product doesn't exist in the cart, add it
+                Cart newProduct = CartFactory.getCartProducts(productDescription, productPrice);
+                newProduct.setQuantity(1);
+                newProduct.setTotalPricePerProduct(productPrice);
+                cartList.add(newProduct);
+            }
+
+            // Click the buttons as needed (assuming these are outside the loop)
+            productsPage.clickAddToCartButton(randomProductIndex);
+            productsPage.clickContinueShoppingButton();
+        }
+
+        // Store the updated cartList in the Serenity Session
+        SerenitySessionUtils.putOnSession(SerenityKeyConstants.Cart, cartList);
     }
 }
